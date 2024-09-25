@@ -1,0 +1,81 @@
+{% extends "mainpage/base.html" %}
+{% load static %}
+{% load static tailwind_tags %}
+
+{% block title %}
+    Sign In
+{% endblock %}
+{% tailwind_css %}
+
+{% block content %}
+  <style>
+    body {
+      background: url("{% static 'mainpage/bg_image.jpg' %}") no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+    }
+
+    .form-card {
+      background: rgba(255, 255, 255, 0.4); 
+      backdrop-filter: blur(10px); 
+      border-radius: 8px; 
+      padding: 20px; 
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    }
+
+    .logo2 {
+      height: 100px; 
+      width: 100px; 
+      object-fit: contain;
+    }
+
+    h2 {
+      margin-top: 20px;
+    }
+
+    .btn-centered {
+      display: block;
+      margin: 0 auto;
+      width: 100%; 
+      max-width: 200px; 
+    }
+  </style>
+<body>
+  <div class="flex min-h-screen flex-col justify-center items-center px-6 py-12 lg:px-8 relative">
+    <div class="form-card sm:mx-auto sm:w-full sm:max-w-sm">
+      <div class="flex justify-center">
+        <!-- Logo image -->
+        <img src="{% static 'mainpage/favicon.jpg' %}" alt="Logo" class="logo2">
+      </div>
+      <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
+      {% if error %}
+      <div id="alertBox" class=" bg-[#f8d7da] p-10 border-5 rounded-xl my-15 alert-box text-[#721c24] ">{{error}}</div>
+      {% endif %}
+      <form class="space-y-6 mt-10" action="#" method="POST">
+        {% csrf_token %}
+        <div>
+          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+          <div class="mt-2">
+            <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#a04324] sm:text-sm sm:leading-6">
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between">
+            <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+            <div hidden class="text-sm">
+              <a href="#" class="font-semibold text-[#a04324] hover:text-[#a04324]">Forgot password?</a>
+            </div>
+          </div>
+          <div class="mt-2">
+            <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#a04324] sm:text-sm sm:leading-6">
+          </div>
+        </div>
+
+        <!-- Sign In button -->
+        <button type="submit" class="flex w-full justify-center rounded-md bg-[#a04324] px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#8e3a21] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a04324] btn-centered">Sign in</button>
+      </form>
+    </div>
+  </div>
+</body>
+{% endblock %}

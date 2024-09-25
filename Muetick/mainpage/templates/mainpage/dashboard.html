@@ -1,0 +1,71 @@
+{% extends "mainpage/base.html" %}
+{% load static %}
+{% load static tailwind_tags %}
+ 
+{% block title %}
+    MueTick
+{% endblock %}
+{% tailwind_css %}
+ 
+{% block content %}
+          <!--this header is just for reference-->
+          <br>
+          <marquee class="text-bold text-3xl"direction="right" scrollamount="10" loop="animate-infinite">We offer discounts of upto 25% on bulk orders!!</marquee>
+        <main>
+            <div class = "content">
+ 
+                <div class="slider">
+                    <div class="slides">
+                      <img src="{% static 'mainpage/Fish-Gallery.jpg' %}" alt="Image 1">
+                      <img src="{% static 'mainpage/image.png' %}" alt="Image 2">
+                      <img src="{% static 'mainpage/image2.jpg' %}" alt="Image 3">
+                    </div>
+                  </div>
+            </div>
+ 
+            <div class="categories my-12">
+              <div class="category1">
+                <a href="{% url 'catpage' 'Egyptian-gallery' %}">
+                  <img src="{% static 'mainpage/Egyptian_Gallery_View2.jpg' %}" alt="Category 1">
+                  <p class="caption">Egyptian Gallery</p>
+                </a>
+ 
+              </div>
+ 
+              <div class="category1">
+                <a href="{% url 'catpage' 'Gandhara-gallery' %}">
+                  <img src="{% static 'mainpage/Gandhara_Gallery_View1.jpg' %}" alt="Category 2">
+                  <p class="caption">Gandhara Gallery</p>
+                </a>
+ 
+              </div>
+ 
+              <div class="category1">
+                <a href="{% url 'catpage' 'Long-archaeology-gallery' %}">
+                  <img src="{% static 'mainpage/LongArchaeology_Gallery_View1.jpg' %}" alt="Category 3">
+                  <p class="caption">Long Archaeology Gallery</p>
+                </a>
+              </div>
+ 
+              <div class="category1">
+                <a href="{% url 'catpage' 'Minor-art-gallery' %}">
+                  <img src="{% static 'mainpage/This-Minor_Art_GalleryView2.jpg' %}" alt="Category 3">
+                  <p class="caption">This Minor Art Gallery</p>
+                </a>
+ 
+              </div>
+ 
+              <div class="category1">
+                <a href="{% url 'catpage' 'Varanda-floor' %}">
+                  <img src="{% static 'mainpage/Varanda_1st_floor.jpg' %}" alt="Category 3">
+                  <p class="caption">Varanda 1st Floor</p> 
+                </a>
+ 
+              </div>
+            </div>
+        </main>
+ 
+ 
+ 
+    </body>
+{% endblock %}

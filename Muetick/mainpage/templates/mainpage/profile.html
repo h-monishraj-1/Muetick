@@ -1,0 +1,205 @@
+{% extends "mainpage/base.html" %}
+{% load static %}
+{% load static tailwind_tags %}
+
+{% block title %}
+    Profile
+{% endblock %}
+{% tailwind_css %}
+
+{% block content %}
+    <style>
+        .raleway {
+            font-family: "Raleway", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body class="raleway">
+    <div class="flex flex-row min-h-screen bg-gradient-to-br from-[#d3a044]/[0.5] to-[#d3a040]">
+        <!-- Sidebar -->
+        <div class="w-2/12 min-h-full bg-gradient-to-b from-[#6d171f]/[0.69] to-[#6d171f] p-5">
+            <h1 class="text-3xl font-bold text-center text-white mb-10">User Profile</h1>
+            <nav class="flex flex-col gap-4">
+                <a href="/home" class="text-lg text-white border-2 border-white border-opacity-25 rounded-lg py-2 px-4 hover:bg-white hover:bg-opacity-25 hover:border-opacity-100">Dashboard</a>
+                <a href="/editprofile" class="text-lg text-white border-2 border-white border-opacity-25 rounded-lg py-2 px-4 hover:bg-white hover:bg-opacity-25 hover:border-opacity-100">Edit Profile</a>
+                <a href="/logout" class="text-lg text-white border-2 border-white border-opacity-25 rounded-lg py-2 px-4 hover:bg-white hover:bg-opacity-25 hover:border-opacity-100">Logout</a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-grow p-10 mb-4">
+            <div class="bg-gradient-to-b from-[#1f2139]/[0.9] to-[#1f2139] text-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-6">User Details</h2>
+                <div class="grid grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <p class="font-semibold">Name:</p>
+                        <p>{{name}}</p>
+                    </div>
+                    <div>
+                        <p class="font-semibold">Email:</p>
+                        <p>{{email}}</p>
+                    </div>
+                    <div>
+                        <p class="font-semibold">Phone:</p>
+                        <p>{{phno}}</p>
+                    </div>
+                </div>
+
+                <h2 class="text-2xl font-bold mb-6">Transaction History</h2>
+                <table class="w-full bg-gradient-to-b from-[#6d171f]/[0.69] to-[#6d171f] rounded-lg overflow-hidden mb-8">
+                    <thead class="bg-[#6d171f]/[0.9] text-white">
+                        <tr>
+                            <th class="p-3">Transaction ID</th>
+                            <th class="p-3">Museum Name</th>
+                            <th class="p-3">Date</th>
+                            <th class="p-3">Amount</th>
+                            <th class="p-3">Status</th>
+                            <!--<th class="p-3">Actions</th>-->
+                        </tr>
+                    </thead>
+                    
+                    <tbody class="text-white">
+                        {% for x in trxns %}
+                        <tr class="bg-[#6d171f]/[0.69] hover:bg-[#6d171f]/[0.8]">
+                            <td class="p-3 text-center">{{x.tic_id}}</td>
+                            <td class="p-3 text-center">{{x.catname.name}}</td>
+                            <td class="p-3 text-center">{{x.trxtime}}</td>
+                            <td class="p-3 text-center">{{x.totalcost }}</td>
+                            {% if not x.checked %}
+                            <td class="p-3 text-center">Not used</td>
+                            {% else %}
+                            <td class="p-3 text-center">Used up</td>
+                            {% endif %}
+                            <!--
+                            <td class="p-3 text-center">
+                                <button onclick="downloadReceipt({{x.tic_id}},{{x.trxtime}},{{x.totalcost}},{{x.checked}})" class="bg-white bg-opacity-25 text-slate-900 px-2 py-1 rounded-lg hover:bg-opacity-50 text-sm">Download Receipt</button>
+                            </td>
+                            -->
+                        </tr>
+                        {% endfor %}
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+
+
+                <h2 class="text-2xl font-bold mb-6">Lost item submissions</h2>
+                <div id="feedback-list" class="bg-[#1f2139] p-4 rounded-lg text-white mb-8">
+                    {% for x in lostandfound %}
+                    <p><strong>Item lost in {{x.museum.name}}:</strong> {{x.desc}}</p>
+                    {% endfor %}
+                </div>
+
+                <!-- Lost and found -->
+                <h2 class="text-2xl font-bold mb-6">Submit Item report</h2>
+                <form id="feedback-form" class="bg-[#1f2139] p-6 rounded-lg shadow-lg"  action="#" method="POST">
+                    {% csrf_token %}
+                    <input name="typeofform" hidden value="l"></input>
+                    <div class="mb-4">
+                        <label for="museum" class="block text-white text-lg mb-2">Museum:</label>
+                        <select required id="museum" name="museum_lnf" class="w-full p-2 border-2 border-white rounded-lg text-black">
+                            <option value="Egyptian-gallery">Egyptian-gallery</option>
+                            <option value="Gandhara-gallery">Gandhara-gallery</option>
+                            <option value="Long-archaeology-gallery">Long-archaeology-gallery</option>
+                            <option value="Minor-art-gallery">Minor-art-gallery</option>
+                            <option value="Varanda-floor">Varanda-floor</option>
+                        </select>
+                        <!--<input type="text" id="museum" name="museum" class="w-full p-2 border-2 border-white rounded-lg text-black" placeholder="Museum Name" required>-->
+                    </div>
+                    <div class="mb-4">
+                        <label for="feedback" class="block text-white text-lg mb-2">Item description:</label>
+                        <textarea id="feedback" name="desc_lnf" rows="4" class="w-full p-2 border-2 border-white rounded-lg text-black" placeholder="Item Description" required></textarea>
+                    </div>
+                    <div class="mb-6">
+                        <button type="submit" class="bg-[#6d171f] text-white p-2 rounded-lg hover:bg-[#6d171f]/[0.9]">Submit item report</button>
+                    </div>
+                </form>
+                <h2 class="text-2xl font-bold mb-6">Recent Feedback</h2>
+                <div id="feedback-list" class="bg-[#1f2139] p-4 rounded-lg text-white mb-8">
+                    {% for x in feedback %}
+                    <p><strong>Feedback for {{x.museum.name}}:</strong> {{x.desc}}</p>
+                    {% endfor %}
+                </div>
+
+                <!-- Feedback Form -->
+                <h2 class="text-2xl font-bold mb-6">Write Feedback</h2>
+                <form id="feedback-form" class="bg-[#1f2139] p-6 rounded-lg shadow-lg" action="#" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <input name="typeofform" hidden value="f"></input>
+                        <label for="museum" class="block text-white text-lg mb-2">Museum:</label>
+                        <select required id="museum" name="museum_f" class="w-full p-2 border-2 border-white rounded-lg text-black">
+                            <option value="Egyptian-gallery">Egyptian-gallery</option>
+                            <option value="Gandhara-gallery">Gandhara-gallery</option>
+                            <option value="Long-archaeology-gallery">Long-archaeology-gallery</option>
+                            <option value="Minor-art-gallery">Minor-art-gallery</option>
+                            <option value="Varanda-floor">Varanda-floor</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="feedback" class="block text-white text-lg mb-2">Feedback:</label>
+                        <textarea id="feedback" name="desc_f" rows="4" class="w-full p-2 border-2 border-white rounded-lg text-black" placeholder="Your feedback..." required></textarea>
+                    </div>
+                    <div class="mb-6">
+                        <button type="submit" class="bg-[#6d171f] text-white p-2 rounded-lg hover:bg-[#6d171f]/[0.9]">Submit Feedback</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--
+     <script>
+        function downloadReceipt(transactionId,date,cash,status) {
+            const receiptContent = `
+                Transaction ID: ${transactionId}\n
+                Date: ${date}\n
+                Amount: ${cash}\n
+                Status: ${status}\n
+            `;
+
+            const blob = new Blob([receiptContent], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `${transactionId}_receipt.txt`;
+            link.click();
+        }
+        </script>
+          function toggleFavorite(museumName) {
+            const button = document.getElementById(`favorite-${museumName.replace(/\s+/g, '')}`);
+            if (button.innerText === 'Add to Favorites') {
+                button.innerText = 'Remove from Favorites';
+                button.classList.add('bg-red-500', 'hover:bg-red-600');
+                button.classList.remove('bg-white', 'hover:bg-opacity-50');
+                // Save to local storage or send to server
+                console.log(`${museumName} added to favorites.`);
+            } else {
+                button.innerText = 'Add to Favorites';
+                button.classList.remove('bg-red-500', 'hover:bg-red-600');
+                button.classList.add('bg-white', 'hover:bg-opacity-50');
+                // Remove from local storage or send to server
+                console.log(`${museumName} removed from favorites.`);
+            }
+        }
+
+        document.getElementById('feedback-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+            
+            const museum = document.getElementById('museum').value;
+            const feedback = document.getElementById('feedback').value;
+
+            // Create a new feedback element
+            const newFeedback = document.createElement('p');
+            newFeedback.innerHTML = `<strong>Feedback for ${museum}:</strong> ${feedback}`;
+
+            // Add the new feedback to the top of the feedback list
+            const feedbackList = document.getElementById('feedback-list');
+            feedbackList.prepend(newFeedback);
+
+            // Clear the form
+            document.getElementById('feedback-form').reset();
+        });
+    </script> -->
+</body>
+{% endblock %}

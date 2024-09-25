@@ -1,0 +1,45 @@
+{% load static %}
+{% load static tailwind_tags %}
+ 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+ 
+        {% endblock %}
+    </title>
+    <link href="{% static 'mainpage/styles.css' %}" rel="stylesheet">
+    <link rel="icon" href="{% static 'mainpage/favicon.jpg' %}">
+    {% tailwind_css %}
+</head>
+<body>
+   <div class="container">
+      <header class="header">
+        <div class="header-container">
+            <img src="{% static 'mainpage/favicon.jpg' %}" alt="Logo" class="logo rounded-xl h-[55px]" onclick="location.href='/';">
+            <nav>
+              <ul class="flex space-x-4">
+                  <li><a href="/home" class=" text-white text-lg hover:text-yellow-500 hover:font-bold  transition duration-300 ease-in-out">Home</a></li>
+                  <li><a href="#" class="text-white text-lg hover:text-yellow-500 hover:font-bold  transition duration-300 ease-in-out">About</a></li>
+                  <li><a href="#" class="text-white text-lg hover:text-yellow-500 hover:font-bold  transition duration-300 ease-in-out">Contact Us</a></li>
+                  <li><a href="/profile" class="text-white text-lg hover:text-yellow-500 hover:font-bold  transition duration-300 ease-in-out">{{name}}</a></li>
+              </ul>
+            </nav>
+        </div>
+    </header>
+  </div> 
+  <div class="container">
+    {% block content %} 
+ 
+    {% endblock %}
+  </div>
+  <div class="container">
+    <footer class="footer">
+      <p>&copy; New Era - 2024 - SIH</p>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,122 @@
+{% extends "mainpage/base.html" %}
+{% load static %}
+{% load static tailwind_tags %}
+ 
+{% block title %}
+    Contact Details
+{% endblock %}
+{% tailwind_css %}
+ 
+{% block content %}
+    <style>
+        .raleway {
+            font-family: "Raleway", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+            }
+    </style>
+</head>
+<body class="bg-[#6c7281] ">
+    <div class="flex flex-row h-full w-full raleway ">
+        <div class="w-2/12 h-full bg-gradient-to-b from-[#6d171f]/[0.69] to-[#6d171f] hover:w-4/12 z-2 text-center font-bold transition-all duration-300 ease-in-out">
+            <div class="flex flex-col gap p-3 text-white">
+                <p class="text-4xl h-full overflow-y-auto p-4 border-4 rounded-xl border-[#d3a044] bg-gradient-to-r from-[#6d171f]/[0.8] to-[#d3a044]/[0.8] italic shadow-lg tracking-wide">
+                    ADMIN PAGE
+                </p>
+                <br>
+                <br>
+                <div class="flex flex-col gap p-3 items-start justify-center h-full overflow-y-auto">
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25  p-3 rounded-xl text-xl transition duration-300 ease-in-out hover:bg-opacity-50 hover:scale-105" onclick="location.href='/adminpage'">
+                        Statistics
+                    </button>
+                    <br>
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-white p-3 rounded-xl text-xl transition duration-300 ease-in-out hover:bg-opacity-50 hover:scale-105" onclick="location.href='/transactions'">
+                        Ticket History
+                    </button>
+                    <br>
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-white p-3 rounded-xl text-xl transition duration-300 ease-in-out hover:bg-opacity-50 hover:scale-105" onclick="location.href='/dev'">
+                        Contact Developers
+                    </button>
+                    <br>
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-white p-3 rounded-xl text-xl transition duration-300 ease-in-out hover:bg-opacity-50 hover:scale-105" onclick="location.href='/scan'">
+                        Ticket Scanning
+                    </button>
+                    <br>
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-white p-3 rounded-xl text-xl transition duration-300 ease-in-out hover:bg-opacity-50 hover:scale-105" onclick="location.href='/lostitems'">
+                        Items
+                    </button>
+                    <br>
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-white p-3 rounded-xl text-xl transition duration-300 ease-in-out hover:bg-opacity-50 hover:scale-105" onclick="location.href='/feedback'">
+                        Feedback
+                    </button>
+                    <br>
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-white p-3 rounded-xl text-xl transition duration-300 ease-in-out hover:bg-opacity-50 hover:scale-105" onclick="location.href='/logout'">
+                        Logout
+                    </button>
+                </div>
+ 
+            </div>
+        </div>
+        <div class="w-11/12 p-5 flex flex-col h-full justify-center items-center animate-fade-right">
+            <h1 class="text-4xl font-bold text-[#6d171f]">Developer Team Contacts:</h1><br>
+            <div class="grid grid-rows-3 border-4 border-[#1f2139]/[0.9] bg-gradient-to-b from-[#1f2139]/[0.9] to-[#1f2139] w-3/4 h-3/4 p-1 text-center max-w-3xl h-full max-h-3xl rounded-lg">
+                <div class="flex justify-between items-center col-start-1 col-span-1 border-4 border-white border-opacity-10 rounded-xl  text-2xl text-white m-1 hover:border-opacity-100  p-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                      </svg>
+                    <p class="">
+                          Contact Number:
+                    </p>
+                </div>
+                <div class="flex justify-start items-center col-start-4 col-span-5">
+                <p class="border-4 border-white border-opacity-10 rounded-xl  text-2xl text-white m-1 hover:border-opacity-100 p-4">
+                    9875672631
+                </p></div>
+                <div class="flex justify-between items-center col-start-1 col-span-1 border-4 border-white border-opacity-10 rounded-xl  text-2xl text-white m-1 hover:border-opacity-100  p-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                      </svg>
+ 
+                    <p class="">
+                    E-Mail:
+                </p></div>
+                <div class="flex justify-start items-center col-start-4 col-span-5">
+                <p class="border-4 border-white border-opacity-10 rounded-xl  text-2xl text-white m-1 hover:border-opacity-100 p-4">
+                    meutick_not_found@gmail.com
+                </p></div>
+                <div class="flex justify-between items-center col-start-1 col-span-1 border-4 border-white border-opacity-10 rounded-xl  text-2xl text-white m-1 hover:border-opacity-100  p-4">
+                    <svg
+                        class="size-6"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 448 512">
+                        <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+                        <path
+                            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+                        </svg>
+                    <p class="">
+                    Instagram:
+                </p></div>
+                <div class="flex justify-start items-center col-start-4 col-span-5">
+                <p class="border-4 border-white border-opacity-10 rounded-xl  text-2xl text-white m-1 hover:border-opacity-100 p-4">
+                    Meutick_frfr
+                </p></div>
+                <div class="flex justify-between items-center col-start-1 col-span-1 border-4 border-white border-opacity-10 rounded-xl  text-2xl text-white m-1 hover:border-opacity-100  p-4">
+                    <svg viewBox="0 0 448 512" class="size-6 text-white bg-white fill-current p-1 rounded-s">
+                        <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+                        <path
+                          d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z" />
+                      </svg>
+                    <p class="">
+                    LinkedIn:
+                </p></div>
+                <div class="flex justify-start items-center col-start-4 col-span-5">
+                <p class="border-4 border-white border-opacity-10 rounded-xl  text-2xl text-white m-1 hover:border-opacity-100 p-4">
+                    am_I_meutick
+                </p></div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

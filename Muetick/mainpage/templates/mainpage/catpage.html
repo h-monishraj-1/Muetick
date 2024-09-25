@@ -1,0 +1,83 @@
+{% extends "mainpage/base.html" %}
+{% load static %}
+{% load static tailwind_tags %}
+ 
+{% block title %}
+    {{m_name}} Booking
+{% endblock %}
+{% tailwind_css %}
+ 
+{% block content %}
+      <body>
+ 
+        <link href="{% static 'mainpage/cat_styles.css' %}" rel="stylesheet">
+        <div class="mt-2 ml-2">
+          <button class="p-4 bg-[#6d171f] text-white rounded-lg flex justify-between hover:bg-[#a33a3a] hover:text-[#fff] hover:drop-shadow-md transition duration-300 ease-in-out mx-2" onclick="location.href = '/home';">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 16.811c0 .864-.933 1.406-1.683.977l-7.108-4.061a1.125 1.125 0 0 1 0-1.954l7.108-4.061A1.125 1.125 0 0 1 21 8.689v8.122ZM11.25 16.811c0 .864-.933 1.406-1.683.977l-7.108-4.061a1.125 1.125 0 0 1 0-1.954l7.108-4.061a1.125 1.125 0 0 1 1.683.977v8.122Z" />
+            </svg>            
+            <p class="mx-2">Back</p>
+          </button>
+        </div>
+        <div class="content">
+            <div class="image">
+                <img src="{% static imgbig %}" alt="Image 1">
+            </div>
+ 
+            <div class="layout">
+              <img class="h-40" src="{% static layout %}" alt="Image 1">
+            </div>
+        </div>
+ 
+ 
+ 
+        <div class = "content" style = "opacity: 0.6;">
+          <div class = "checkout">
+ 
+            <form method="POST" action="#">
+              {% csrf_token %}
+              <h1>One Ticket Price: {{price}}</h1>
+              <input hidden style="margin-bottom:10px;" type="text" name="price" value="{{price}}"></input>
+              <bold><input class="tickettextbox"style="margin-bottom:10px;color:black;" type="text" placeholder="Enter Number of tickets." name="ticketcount" value="{{tickets}}"></input></bold>
+              <button>
+                <h3>Pay</h3>
+              </button>
+            </form>
+          </div>
+ 
+          <div class="ticket">
+            <h1 class="text-xl font-bold">{{m_name}} - ticket</h1>
+            <div class="ticket-controls">
+                <button class="decrease-btn " onclick="subcount()">-</button>
+                <span name="ticketcountlabel"class="ticket-count">1</span>
+                <button class="increase-btn" onclick="addcount()">+</button>
+            </div>
+        </div>
+        <div>
+          <div class="font-bold">
+            Available tickets- {{avail}}
+          </div>
+          <div class="font-bold text-red-500">
+            {{error}}
+          </div>
+        </div>
+ 
+ 
+        </div>
+      </body>
+        <script>
+          function addcount(){
+              element=parseInt(document.querySelector(".ticket-count").innerHTML)+1;
+              document.querySelector(".ticket-count").innerHTML=element;
+              document.querySelector(".tickettextbox").value=element;
+          }
+          function subcount(){
+              element=parseInt(document.querySelector(".ticket-count").innerHTML)-1;
+              if (element<1){
+                return;
+              }
+              document.querySelector(".ticket-count").innerHTML=element;
+              document.querySelector(".tickettextbox").value=element;
+          }
+        </script>
+{% endblock %}

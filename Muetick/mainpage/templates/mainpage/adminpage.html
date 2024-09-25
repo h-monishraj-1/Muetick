@@ -1,0 +1,100 @@
+{% extends "mainpage/base.html" %}
+{% load static %}
+{% load static tailwind_tags %}
+ 
+{% block title %}
+    Sign Up
+{% endblock %}
+{% tailwind_css %}
+ 
+{% block content %}
+    <style>
+        .raleway {
+            font-family: "Raleway", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+            }
+    </style>
+    {% tailwind_css %}
+</head>
+<body>
+    <div class="flex flex-row w-full raleway h-full">
+        <div class="w-2/12 h-full bg-gradient-to-b from-[#6d171f]/[0.69] to-[#6d171f] hover:w-4/12 z-2 text-center font-bold transition-all duration-300 ease-in-out">
+            <div class="flex flex-col gap p-3 text-white">
+                <p class="text-4xl h-full overflow-y-auto p-4 border-4 rounded-xl border-[#d3a044] bg-gradient-to-r from-[#6d171f]/[0.8] to-[#d3a044]/[0.8] italic shadow-lg tracking-wide">
+                    ADMIN PAGE
+                </p>
+                <br>
+                <br>
+                <div class="flex flex-col gap p-3 items-start justify-center h-full overflow-y-auto">
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25  p-3 rounded-xl text-xl transition duration-300 ease-in-out hover:bg-opacity-50 hover:scale-105" onclick="location.href='/adminpage'">
+                        Statistics
+                    </button>
+                    <br>
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-white p-3 rounded-xl text-xl transition duration-300 ease-in-out hover:bg-opacity-50 hover:scale-105" onclick="location.href='/transactions'">
+                        Ticket History
+                    </button>
+                    <br>
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-white p-3 rounded-xl text-xl transition duration-300 ease-in-out hover:bg-opacity-50 hover:scale-105" onclick="location.href='/dev'">
+                        Contact Developers
+                    </button>
+                    <br>
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-white p-3 rounded-xl text-xl transition duration-300 ease-in-out hover:bg-opacity-50 hover:scale-105" onclick="location.href='/scan'">
+                        Ticket Scanning
+                    </button>
+                    <br>
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-white p-3 rounded-xl text-xl transition duration-300 ease-in-out hover:bg-opacity-50 hover:scale-105" onclick="location.href='/lostitems'">
+                        Items
+                    </button>
+                    <br>
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-white p-3 rounded-xl text-xl transition duration-300 ease-in-out hover:bg-opacity-50 hover:scale-105" onclick="location.href='/feedback'">
+                        Feedback
+                    </button>
+                    <br>
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-white p-3 rounded-xl text-xl transition duration-300 ease-in-out hover:bg-opacity-50 hover:scale-105" onclick="location.href='/logout'">
+                        Logout
+                    </button>
+                </div>
+ 
+            </div>
+        </div>
+        <div class="w-11/12 bg-gradient-to-br from-[#d3a044]/[0.5] to-[#d3a040] p-5 flex h-[100vh] justify-center items-center animate-fade-right">
+            <div class="grid grid-rows-3 border-4 border-[#1f2139]/[0.9] bg-[#1f2139] w-3/4 h-3/4 p-1 text-center text-">
+                <div class="col-start-1 col-span-4 border-4 rounded-xl m-1 bg-white bg-opacity-15 text-slate-300 p-3 flex flex-col justify-center items-center">
+                    <p class="text-1xl font-bold">Ticket sets Sold</p>
+                    <p class="text-4xl font-bold">{{ticketssold}}</p>
+                </div>
+                <div class="col-start-5 col-span-4 border-4 rounded-xl m-1 bg-white bg-opacity-15 text-slate-300  p-3 flex flex-col justify-center items-center">
+                    <p class="text-1xl font-bold">Cash Inflow</p>
+                    <p class="text-4xl font-bold">{{cashinflow}}</p>
+                </div>
+                <div class="col-start-9 col-span-4 border-4 rounded-xl m-1 bg-white bg-opacity-15 text-slate-300  p-3 flex flex-col justify-center items-center">
+                    <p class="text-1xl font-bold">Accounts Created</p>
+                    <p class="text-4xl font-bold">{{totalaccounts}}</p>
+                </div>
+                <div class="col-start-1 col-span-6 border-4 rounded-xl m-1 bg-white bg-opacity-15 text-slate-300 p-3 flex flex-col justify-center items-center">
+                    <p class="text-1xl font-bold">Egyptian Gallery</p>
+                    <p class="text-4xl font-bold">{{eg}}/{{egu}}</p>
+                </div>
+                <div class="col-start-7 col-span-6 border-4 rounded-xl m-1 bg-white bg-opacity-15 text-slate-300  p-3 flex flex-col justify-center items-center">
+                    <p class="text-1xl font-bold">Gandhara Gallery</p>
+                    <p class="text-4xl font-bold">{{gg}}/{{ggu}}</p>
+                </div>
+                <div class="col-start-1 col-span-4 border-4 rounded-xl m-1 bg-white bg-opacity-15 text-slate-300 p-3 flex flex-col justify-center items-center">
+                    <p class="text-1xl font-bold">Long Archaeology Gallery</p>
+                    <p class="text-4xl font-bold">{{lag}}/{{lagu}}</p>
+                </div>
+                <div class="col-start-5 col-span-4 border-4 rounded-xl m-1 bg-white bg-opacity-15 text-slate-300  p-3 flex flex-col justify-center items-center">
+                    <p class="text-1xl font-bold">This Minor Art Gallery</p>
+                    <p class="text-4xl font-bold">{{mag}}/{{magu}}</p>
+                </div>
+                <div class="col-start-9 col-span-4 border-4 rounded-xl m-1 bg-white bg-opacity-15 text-slate-300  p-3 flex flex-col justify-center items-center">
+                    <p class="text-1xl font-bold">Varanda 1st Floor</p>
+                    <p class="text-4xl font-bold">{{vf}}/{{vfu}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

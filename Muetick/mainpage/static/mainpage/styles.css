@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@keyframes wiggle {
+  0%, 100% {
+  transform: rotate(-5deg);
+  }
+  50% {
+  transform: rotate(5deg);
+  }
+}
+
+.animate-wiggle {
+  animation: wiggle 1s ease-in-out infinite;
+}
+@keyframes jump-in {
+  0% {
+  transform: translateY(20%);
+  opacity: 0;
+  }
+  50% {
+  transform: translateY(-10%);
+  }
+  100% {
+  transform: translateY(0);
+  opacity: 1;
+  }
+}
+
+.animate-jump-in {
+  animation: jump-in 0.8s ease-out forwards;
+}
+@keyframes fade-right {
+  0% {
+  opacity: 0;
+  transform: translateX(-30px);
+  }
+  100% {
+  opacity: 1;
+  transform: translateX(0);
+  }
+}
+
+.animate-fade-right {
+  animation: fade-right 1s ease-out forwards;
+}
+.animate-delay-400 {
+  animation-delay: 0.4s; 
+}
+
+@keyframes fade-left {
+  0%{
+      opacity: 0;
+      transform: translateX(30px);
+  }
+  100%{
+      opacity: 1;
+      transform: translateX(0);
+  }
+}
+
+.animate-fade-left{
+  animation: fade-left 1s ease-out forwards;
+}
+
+body {
+    margin: 0;
+    font-family: "Raleway", sans-serif;
+    background: rgba(211, 160, 64, 0.8);
+    height: 100vh;
+  }
+
+
+/*this is just for reference*/
+  .header {
+    background-color: rgba(109, 23, 31, 1);
+    color: white;
+    padding: 15px;
+  }
+  
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space out the logo and nav */
+  }
+  
+  .logo {
+    height: 40px; /* Adjust the logo size */
+  }
+  
+  .header nav {
+    display: flex;
+  }
+  
+  .header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  .header nav ul li {
+    margin: 0 15px;
+  }
+  
+  .header nav ul li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .header nav ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  
+  /* Footer styling */
+  footer {
+    background: rgba(109, 23, 31, 1);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+  /*this is just for reference*/
+
+  main {
+    margin: 20px;
+  }
+
+
+  .content {
+    padding: 20px;
+    height: 30vh;
+    width: 95vw; /* Adjust as needed */
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden; /* Hide overflow */
+  }
+
+  .slider {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .slides {
+    display: flex;
+    width: 300%; /* 100% per image, 3 images total */
+    height: 100%;
+    animation: slide 30s linear infinite; /* Adjust the duration for slower sliding */
+  }
+  
+  .slides img {
+    width: 100%; /* Each image fills the slides container */
+    margin-right: 20px;
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Cover the area */
+    border-radius: 20px;
+  }
+  
+  /* Keyframes for continuous sliding animation */
+  @keyframes slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-66.66%); } /* Moves to the end of the images */
+  }
+  
+  
+
+  /*categories*/
+  .categories {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping if the items overflow */
+    gap: 20px; /* Space between items */
+    justify-content: center; /* Center items horizontally */
+  }
+  
+  .category1 {
+    height: 200px;
+    width: 250px;
+    border-radius: 20px;
+    background-color: grey;
+    transition: transform 0.3s ease;
+  }
+
+  .category1:hover {
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+  .category1 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px; /* Scale and crop image to cover the div */
+  }
+
+  .caption {
+    margin-top: 10px; /* Space between image and caption */
+    font-size: 14px; /* Adjust font size as needed */
+    color: #1f2139; /* Text color */
+    font-family: 'Raleway', sans-serif; /* Font family */
+    text-align: center;
+    font-weight: 900;
+  }
